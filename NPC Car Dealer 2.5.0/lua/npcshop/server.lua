@@ -19,10 +19,16 @@ hook.Add("EntityTakeDamage", "PReventNPCfromdying", function( target, dmginfo )
 	end
 end)
 
+local function RealUserGroup( ply )
+if ply.EV_GetRank then return ply:EV_GetRank() end -- Evolve
+if ply.GetUserGroup() then return ply:GetUserGroup() end -- ULX
+	return ply:GetNWString("usergroup") -- fAdmin
+end
+
 local function IsDonator(ply)
 	local isdonator = false
 	for k,v in pairs(NPCSHOP.UserGroups) do
-		if ply:GetUserGroup() == v then
+		if RealUserGroup(ply) == v then
 			isdonator = true
 			break
 		end
