@@ -4,11 +4,14 @@ if not SERVER then return end
 util.AddNetworkString( "npcshop_senddata" )
 
 function SpawnnpcShop()
-		local shop = ents.Create("npc_shop")
-			shop:SetPos( Vector(-868.878723, -12786.181641, 74.968750) ) --Don't forget spawn vectors here!
-			shop:SetAngles( Angle(9.002390, -1.786602, 0.000000) )
-			shop:Spawn()
-			shop:DropToFloor()
+	local npcspawn = NPCSHOP.NPCSpawn[game.GetMap()]
+	local pos = npcspawn.pos
+	local ang = npcspawn.ang
+	local shop = ents.Create("npc_shop")
+	shop:SetPos( pos )
+	shop:SetAngles( ang )
+	shop:Spawn()
+	shop:DropToFloor()
 end
 
 hook.Add("InitPostEntity", "SpawnnpcShop", SpawnnpcShop)
