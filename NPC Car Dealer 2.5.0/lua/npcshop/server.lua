@@ -88,43 +88,28 @@ local function SpawnVehicle(ply, class)
 		ply.currentcar:Remove()
 	end
 	
-	local vehicle = list.Get("Vehicles")[class]
-	if not vehicle then return end
-	
-	local car = ents.Create(vehicle.Class)
-		if not car then return end
-		
-		car:SetModel(vehicle.Model)
-		
-		if vehicle.KeyValues then
-			for k, v in pairs(vehicle.KeyValues) do
-				car:SetKeyValue(k, v)
-			end
-		end
-	
-		car.VehicleName = class
-		car.VehicleTable = vehicle
-		car.Owner = ply
-	
 	local carspawns = NPCSHOP.CarSpawn[game.GetMap()]
 	local pos = carspawns.pos
 	local ang = carspawns.ang
-	
-	car:SetPos(pos)
-	car:SetAngles(ang)
-	
-	car:Spawn()
-	car:Activate()
-	car:SetCollisionGroup(COLLISION_GROUP_WEAPON)
-	car.SID = ply.SID
-	car.ClassOverride = vehicle.Class
-	if vehicle.Members then
-		table.Merge(car, vehicle.Members)
+	local CarEnt = ents.Create( class )
+	if IsValid(CarEnt) then
+		CarEnt:Spawn()
+		CarEnt:Activate()
+		CarEnt:SetPos( pos )	
+		
+		CarEnt:SetAngles( ang )	
+		CarEnt:Reposition()
+		CarEnt.handBreakDel = CurTime() + 2
+		CarEnt:UpdateAllCharacteristics()
+		
+		CarEnt:SetCarOwner( ply )
+		CarEnt.SID = ply.SID
+		CarEnt:keysOwn(ply)
+
+		ply:AddCount( "SCar", CarEnt )
+		ply.currentcar = CarEnt
 	end
-	car:keysOwn(ply)
-	gamemode.Call("PlayerSpawnedVehicle", ply, car)
-	
-	ply.currentcar = car
+
 end
 
 concommand.Add("_npcshopbtnclick", function(ply, _, args)
