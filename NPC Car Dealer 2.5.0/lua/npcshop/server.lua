@@ -5,6 +5,7 @@ util.AddNetworkString( "npcshop_senddata" )
 
 function SpawnnpcShop()
 	local npcspawn = NPCSHOP.NPCSpawn[game.GetMap()]
+	if not istable(npcspawn) then return end
 	local pos = npcspawn.pos
 	local ang = npcspawn.ang
 	local shop = ents.Create("npc_shop")
@@ -92,6 +93,7 @@ local function SpawnVehicle(ply, class)
 	end
 	
 	local carspawns = NPCSHOP.CarSpawn[game.GetMap()]
+	if not istable(carspawns) then return end
 	local pos = carspawns.pos
 	local ang = carspawns.ang
 	local CarEnt = ents.Create( class )
