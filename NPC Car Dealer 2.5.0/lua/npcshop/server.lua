@@ -39,11 +39,7 @@ end
 //Utilizes darkrp's notify
 local function Notify(ply, text)
 	if not IsValid(ply) then return end
-	umsg.Start("_Notify", ply)
-		umsg.String(text)
-		umsg.Short(0)
-		umsg.Long(4)
-	umsg.End()
+	DarkRP.notify(ply,0,4,text)
 end
 
 local function SaveVehicles()
