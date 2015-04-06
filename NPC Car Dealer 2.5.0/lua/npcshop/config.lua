@@ -27,7 +27,7 @@ NPCSHOP.CarSpawn["rp_mapnamehere"] = {
 }
 
 
-//Which ULX usergroups are considered "Donator"
+//Which usergroups are considered "Donator"
 NPCSHOP.UserGroups = {"donator", "admin", "superadmin"}
 
 /*=-=-=-=-=-=-=-=-=-=-==--=-=-=-=-=-=HOW TO ADD VEHICLES=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -41,14 +41,15 @@ If you add or remove darkrp teams, this process (in some cases) have to be done 
 
 NPCSHOP.AddVehicle(name, class, model, price, jobrestriction, donatoronly)
 name: Name of the vehicle in the npcshop menu
-class: Vehicle-class of the vehicle. Use "rp_getvehicles" to find these.
+class: SENT-class of the Scar. You can find these in scars/lua/entities. Most of them start with "sent_sakarias_car_"
 model: Model which will appear in the npcshop menu
 price: How much it costs
 jobrestriction: What jobs will be able to buy this (type nil if its available to all jobs)
 donatoronly: Is this vehicle only available for donator's? true/false
 Display name > Class (rp_getvehicles in console) > Model directory > Price > Jobs > Donator/Not Donator - False = Not Donator, True = Donator
 */
-NPCSHOP.AddVehicle("Jeep", "Jeep", "models/buggy.mdl", 50000, nil, false )
-NPCSHOP.AddVehicle("Airboat", "Airboat", "models/airboat.mdl", 100000, nil, false )
+NPCSHOP.AddVehicle("Junker1", "sent_sakarias_car_junker1", "models/props_vehicles/car002b.mdl", 500, nil, false )
+NPCSHOP.AddVehicle("Junker2", "sent_sakarias_car_junker2", "models/props_vehicles/car003b.mdl", 1000, nil, false )
+NPCSHOP.AddVehicle("Junker3", "sent_sakarias_car_junker3", "models/props_vehicles/van001a.mdl", 1500, nil, false )
 
 
